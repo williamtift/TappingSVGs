@@ -2,6 +2,12 @@
 
 A SwiftUI iOS sample project that demonstrates how to detect taps on individual layers within an SVG file and provide visual feedback. This shows a practical approach to making SVG elements interactive in SwiftUI apps.
 
+## Demo
+
+<img src="assets/demo.gif" alt="SVG Interaction Demo" width="300">
+
+*Tap different body parts to see how multiple SVG paths are grouped and highlighted as units*
+
 ## What This Sample Shows
 
 This project demonstrates a specific technique: **grouping multiple SVG paths into logical body parts** and **detecting which body part was tapped** when a user interacts with any of its component paths.
