@@ -8,81 +8,72 @@
 import SwiftUI
 import SVGView
 
+/**
+ * ContentView demonstrates how to group multiple SVG paths into logical body parts
+ * and detect which body part was tapped when any of its component paths are touched.
+ */
 struct ContentView: View {
+    /// Currently selected body part - drives visual feedback
     @State private var selectedPart: BodyPart?
     
     var body: some View {
-        let view = SVGView(contentsOf: Bundle.main.url(forResource: "character", withExtension: "svg")!)
-        BodyPart.Vector.allCases.forEach { vector in
-            if let part = view.getNode(byId: vector.rawValue) {
+        // Load the SVG file from app bundle
+        let svgView = SVGView(contentsOf: Bundle.main.url(forResource: "character", withExtension: "svg")!)
+        
+        // Configure interaction for each SVG path
+        setupSVGInteractions(for: svgView)
+        
+        return svgView
+            .padding()
+    }
+    
+    /**
+     * Sets up tap gestures and visual feedback for all SVG paths.
+     */
+    private func setupSVGInteractions(for svgView: SVGView) {
+        // For each SVG path we want to make interactive
+        SVGPath.allCases.forEach { svgPath in
+            // Get the actual SVG node (path) by its ID and determine which body part it belongs to
+            if let pathNode = svgView.getNode(byId: svgPath.id),
+               let bodyPart = BodyPart(containingPath: svgPath) {
                 
-                let correspondingBodyPart = BodyPart.init(path: vector)
-                
-                part.onTapGesture {
-                    selectedPart = correspondingBodyPart
+                // Add tap gesture to this path
+                pathNode.onTapGesture {
+                    selectedPart = bodyPart
+                    print("Tapped \(svgPath.id) - belongs to \(String(describing: bodyPart))")
                 }
                 
-//                part.opacity = correspondingBodyPart == selectedPart ? 0.2 : 1
-                if let shape = (part as? SVGShape), correspondingBodyPart == selectedPart {
-                    shape.fill =  SVGColor.by(name: "red")
-                    if let color = SVGColor.by(name: "black") {
-                        shape.stroke = SVGStroke(fill: color, width: 2)
-                    }
-                }
-                
+                // Apply visual styling if this path's body part is selected
+                applyVisualFeedback(to: pathNode, for: bodyPart)
             }
         }
-        return view
+    }
+    
+    /**
+     * Changes the appearance of SVG paths when their body part is selected.
+     */
+    private func applyVisualFeedback(to pathNode: SVGNode, for bodyPart: BodyPart) {
+        guard let shape = pathNode as? SVGShape,
+              bodyPart == selectedPart else { return }
+        
+        // Change fill color to red when selected
+        shape.fill = SVGColor.by(name: "red")
+        
+        // Add black stroke for emphasis
+        if let strokeColor = SVGColor.by(name: "black") {
+            shape.stroke = SVGStroke(fill: strokeColor, width: 2)
+        }
+        
+        // Alternative: Modify opacity instead of color
+        // shape.opacity = 0.5
     }
 }
 
+// MARK: - Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-    }
-}
-
-enum BodyPart: CaseIterable {
-    case head, chest, leftArm, rightArm, legs
-    
-    enum Vector: String, CaseIterable {
-        case a = "Vector"
-        case b = "Vector_2"
-        case c = "Vector_3"
-        case d = "Vector_4"
-        case e = "Vector_5"
-        case f = "Vector_6"
-        case g = "Vector_7"
-        case h = "Vector_8"
-        case i = "Vector_9"
-        case j = "Vector_10"
-        case k = "Vector_11"
-        case l = "left"
-    }
-    
-    var paths: [Vector] {
-        switch self {
-        case .legs: return [.a]
-        case .leftArm: return [.b, .l]
-        case .rightArm: return [.g, .h, .i, .j, .k]
-        case .chest: return [.c]
-        case .head: return [.d, .e, .f]
-        }
-    }
-    
-    init?(path: Vector) {
-        if BodyPart.legs.paths.contains(path) {
-            self = .legs
-        } else if BodyPart.leftArm.paths.contains(path) {
-            self = .leftArm
-        } else if BodyPart.rightArm.paths.contains(path) {
-            self = .rightArm
-        } else if BodyPart.chest.paths.contains(path) {
-            self = .chest
-        } else if BodyPart.head.paths.contains(path) {
-            self = .head
-        } else {
-            return nil
+        NavigationView {
+            ContentView()
         }
     }
 }

@@ -3,26 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		412D01BC2A18191C00F95F16 /* TappingSvgsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D01BB2A18191C00F95F16 /* TappingSvgsApp.swift */; };
-		412D01BE2A18191C00F95F16 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D01BD2A18191C00F95F16 /* ContentView.swift */; };
-		412D01C02A18191E00F95F16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 412D01BF2A18191E00F95F16 /* Assets.xcassets */; };
-		412D01C32A18191E00F95F16 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 412D01C22A18191E00F95F16 /* Preview Assets.xcassets */; };
 		412D01CB2A1819F300F95F16 /* SVGView in Frameworks */ = {isa = PBXBuildFile; productRef = 412D01CA2A1819F300F95F16 /* SVGView */; };
-		412D01CD2A181A1F00F95F16 /* character.svg in Resources */ = {isa = PBXBuildFile; fileRef = 412D01CC2A181A1F00F95F16 /* character.svg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		412D01B82A18191C00F95F16 /* TappingSvgs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TappingSvgs.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		412D01BB2A18191C00F95F16 /* TappingSvgsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappingSvgsApp.swift; sourceTree = "<group>"; };
-		412D01BD2A18191C00F95F16 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		412D01BF2A18191E00F95F16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		412D01C22A18191E00F95F16 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		412D01CC2A181A1F00F95F16 /* character.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = character.svg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		41501D2B2DEE658000DF1322 /* TappingSvgs */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TappingSvgs; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		412D01B52A18191C00F95F16 /* Frameworks */ = {
@@ -39,7 +33,7 @@
 		412D01AF2A18191C00F95F16 = {
 			isa = PBXGroup;
 			children = (
-				412D01BA2A18191C00F95F16 /* TappingSvgs */,
+				41501D2B2DEE658000DF1322 /* TappingSvgs */,
 				412D01B92A18191C00F95F16 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,26 +44,6 @@
 				412D01B82A18191C00F95F16 /* TappingSvgs.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		412D01BA2A18191C00F95F16 /* TappingSvgs */ = {
-			isa = PBXGroup;
-			children = (
-				412D01BB2A18191C00F95F16 /* TappingSvgsApp.swift */,
-				412D01BD2A18191C00F95F16 /* ContentView.swift */,
-				412D01BF2A18191E00F95F16 /* Assets.xcassets */,
-				412D01CC2A181A1F00F95F16 /* character.svg */,
-				412D01C12A18191E00F95F16 /* Preview Content */,
-			);
-			path = TappingSvgs;
-			sourceTree = "<group>";
-		};
-		412D01C12A18191E00F95F16 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				412D01C22A18191E00F95F16 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +60,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				41501D2B2DEE658000DF1322 /* TappingSvgs */,
 			);
 			name = TappingSvgs;
 			packageProductDependencies = (
@@ -136,9 +113,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				412D01C32A18191E00F95F16 /* Preview Assets.xcassets in Resources */,
-				412D01C02A18191E00F95F16 /* Assets.xcassets in Resources */,
-				412D01CD2A181A1F00F95F16 /* character.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,8 +123,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				412D01BE2A18191C00F95F16 /* ContentView.swift in Sources */,
-				412D01BC2A18191C00F95F16 /* TappingSvgsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
